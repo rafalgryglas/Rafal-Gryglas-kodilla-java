@@ -17,14 +17,14 @@ public class TestingMain {
         System.out.println("Test - pierwszy test jednostkowy: dodawanie");
 
         Calculator calculator = new Calculator(15, 10);
-        int testAdd = calculator.getA() + calculator.getB();
+        int testAdd = 25;
         if (testAdd == calculator.add(15, 10)) {
             System.out.println("Test - add a to b: OK");
         } else {
             System.out.println("Error test add a to b");
         }
         System.out.println("Test - drugi test jednostkowy: odejmowanie");
-        int testSubstract = calculator.getB() - calculator.getA();
+        int testSubstract = -5;
         if (testSubstract == calculator.substract(15, 10)) {
             System.out.println("Test - Substract b from a: OK");
         } else {
