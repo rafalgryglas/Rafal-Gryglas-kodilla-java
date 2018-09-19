@@ -4,8 +4,6 @@ import java.time.LocalDate;
 
 public class ForumUser {
     public enum Gender {M, F}
-
-    ;
     private final int userID;
     private final String username;
     private final Gender gender;
