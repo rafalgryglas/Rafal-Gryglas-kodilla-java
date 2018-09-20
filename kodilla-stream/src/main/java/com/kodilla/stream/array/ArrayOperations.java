@@ -1,5 +1,5 @@
 package com.kodilla.stream.array;
 
 public interface ArrayOperations {
-     double getAverage(int[] numbers);
+    double getAverage(int[] numbers);
 }

@@ -8,14 +8,14 @@ public class ArrayAverage implements ArrayOperations {
     public ArrayAverage(int[] numbers) {
         this.numbers = numbers;
     }
-    public double getAverage(int [] numbers) {
-            IntStream.range(0, numbers.length)
-                    .mapToDouble(n->numbers[n])
-                    .forEach(System.out::println);
 
-            return IntStream.range(0,numbers.length)
-                    .mapToDouble(n->numbers[n])
-                    .average()
-                    .orElse(0.0); //jak average wyswietlic w konsoli
+    public double getAverage(int[] numbers) {
+        return IntStream.range(0, numbers.length)
+                .mapToDouble(n -> numbers[n])
+                .map(k -> {
+                    System.out.println(k);
+                    return k;
+                })
+                .average().getAsDouble();
     }
 }
