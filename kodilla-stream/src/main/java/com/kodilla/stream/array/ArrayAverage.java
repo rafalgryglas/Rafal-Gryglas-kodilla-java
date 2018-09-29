@@ -9,7 +9,7 @@ public class ArrayAverage implements ArrayOperations {
         this.numbers = numbers;
     }
 
-    public double getAverage(int[] numbers) {
+    public static double getAverage(int[] numbers) {
         return IntStream.range(0, numbers.length)
                 .mapToDouble(n -> numbers[n])
                 .map(k -> {
