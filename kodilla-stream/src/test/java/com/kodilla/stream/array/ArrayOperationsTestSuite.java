@@ -8,9 +8,8 @@ public class ArrayOperationsTestSuite {
     public void testGetAverage() {
         //Given
         int[] numbers = {2, 1, 3, 5, 6, 2, 3, 6, 3, 3, 3, 6, 4, 5, 6, 2, 1, 3, 3, 2};
-        ArrayAverage average = new ArrayAverage(numbers);
         //When
-        double result = average.getAverage(numbers);
+        double result = ArrayOperations.getAverage(numbers);
         //Then
         Assert.assertEquals(3.45, result, 0.001);
     }

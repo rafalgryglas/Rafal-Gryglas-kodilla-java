@@ -84,4 +84,59 @@ public class BookDirectoryTestSuite {
         assertEquals(0, theListOfBooks10.size());
         verify(libraryDatabaseMock, times(0)).listBooksWithCondition(anyString());
     }
+    @Test
+    public void test0tBooksInHandsOf() {
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> result0BooksInHands = new ArrayList<>();
+        LibraryUser user = new LibraryUser("Rafal", "Kowalski", "13654812659");
+        when(libraryDatabaseMock.listBooksInHandsOf(user)).thenReturn(result0BooksInHands);
+
+
+        // When
+        int zeroListOfBook = bookLibrary.listBooksInHandsOf(user).size();
+        // Then
+
+        assertEquals(0, zeroListOfBook);
+        verify(libraryDatabaseMock,times(1)).listBooksInHandsOf(user);
+
+    }
+    @Test
+    public void test1tBooksInHandsOf() {
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> result1BookInHands = generateListOfNBooks(1);
+        LibraryUser user = new LibraryUser("Rafal", "Kowalski", "13654812659");
+        when(libraryDatabaseMock.listBooksInHandsOf(user)).thenReturn(result1BookInHands);
+
+
+        // When
+        int oneBookInHands = bookLibrary.listBooksInHandsOf(user).size();
+        // Then
+
+        assertEquals(1, oneBookInHands);
+        verify(libraryDatabaseMock,times(1)).listBooksInHandsOf(user);
+
+    }
+    @Test
+    public void test5tBooksInHandsOf() {
+        // Given
+        LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
+        List<Book> result5BooksInHands = generateListOfNBooks(5);
+        LibraryUser user = new LibraryUser("Rafal", "Kowalski", "111232158");
+
+        when(libraryDatabaseMock.listBooksInHandsOf(user))
+                .thenReturn(result5BooksInHands);
+
+
+        // When
+        int fiveBookInHands = bookLibrary.listBooksInHandsOf(user).size();
+        // Then
+
+        assertEquals(5, fiveBookInHands);
+        verify(libraryDatabaseMock,times(1)).listBooksInHandsOf(user);
+    }
 }
