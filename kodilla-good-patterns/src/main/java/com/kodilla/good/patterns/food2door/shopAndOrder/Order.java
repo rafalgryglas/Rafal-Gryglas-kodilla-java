@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.food2door;
+package com.kodilla.good.patterns.food2door.shopAndOrder;
 
 public class Order {
     public final Product product;

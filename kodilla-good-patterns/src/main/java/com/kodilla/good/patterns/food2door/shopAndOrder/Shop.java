@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.food2door;
+package com.kodilla.good.patterns.food2door.shopAndOrder;
 
 public class Shop {
     private final String shopName;

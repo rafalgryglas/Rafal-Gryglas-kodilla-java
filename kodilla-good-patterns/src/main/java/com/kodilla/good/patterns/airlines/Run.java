@@ -7,10 +7,10 @@ public class Run {
         CityWithAirport warszawa = new CityWithAirport("Warszawa", "WAW");
 
         FlightBetweenCityRepository flightBetweenCityRepository = new FlightBetweenCityRepositoryImp();
-
         FlightSearchProcessor flightSearchProcessor = new FlightSearchProcessor(flightBetweenCityRepository);
 
         flightSearchProcessor.searchFlightFromCity(gdansk);
         flightSearchProcessor.searchFlightToCity(olsztynMazury);
+        flightSearchProcessor.searchFlightByAnotherCity(olsztynMazury, gdansk, warszawa);
     }
 }

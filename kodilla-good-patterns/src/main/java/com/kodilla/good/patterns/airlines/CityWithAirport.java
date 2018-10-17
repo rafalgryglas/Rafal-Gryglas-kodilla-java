@@ -3,7 +3,7 @@ package com.kodilla.good.patterns.airlines;
 import java.util.Objects;
 
 public class CityWithAirport {
-    public final String city;
+    private final String city;
     public final String IATA;
 
     public CityWithAirport(String city, String IATA) {
