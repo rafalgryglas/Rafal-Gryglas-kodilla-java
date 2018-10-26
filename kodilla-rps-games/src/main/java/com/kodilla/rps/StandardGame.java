@@ -1,8 +1,6 @@
-package com.kodilla.rpslsCompCheating;
+package com.kodilla.rps;
 
-import com.kodilla.rps.Game;
-
-public class GameRPSLSCheating implements Game {
+public class StandardGame implements Game {
     @Override
     public boolean playGame() {
         while (true) {

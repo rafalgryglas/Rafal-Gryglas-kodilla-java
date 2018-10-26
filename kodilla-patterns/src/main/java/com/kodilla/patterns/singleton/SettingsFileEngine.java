@@ -6,7 +6,6 @@ public final class SettingsFileEngine {
 
     private SettingsFileEngine() {
     }
-
 //    public static SettingsFileEngine getInstance() {
 //        if (settingsFileEngineInstance == null) {
 //            settingsFileEngineInstance = new SettingsFileEngine()

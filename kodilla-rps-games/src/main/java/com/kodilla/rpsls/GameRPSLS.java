@@ -1,6 +1,9 @@
 package com.kodilla.rpsls;
 
-public class GameRPSLS {
+import com.kodilla.rps.Game;
+
+public class GameRPSLS implements Game {
+    @Override
     public boolean playGame() {
         while (true) {
             if (UserDialogs.firstViewDialogs()) {

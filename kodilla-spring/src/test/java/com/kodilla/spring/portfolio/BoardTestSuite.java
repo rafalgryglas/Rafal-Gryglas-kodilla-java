@@ -22,7 +22,7 @@ public class BoardTestSuite {
         String toDo = board.getToDoList().getTasks().get(0);
 
         //Then
-        Assert.assertEquals(doneList, "Done List");
+        Assert.assertEquals(doneList, "Done List"); //zmienic  oczekiwana
         Assert.assertEquals(inProgress, "In Progress List");
         Assert.assertEquals(toDo, "To Do List");
 
