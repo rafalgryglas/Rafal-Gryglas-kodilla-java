@@ -38,7 +38,7 @@ public final class Bigmac {
         }
     }
 
-    public Bigmac(final Bun bun, final int burgers, final Sauce sauce, List<Ingredients> ingredients) {
+    private Bigmac(final Bun bun, final int burgers, final Sauce sauce, List<Ingredients> ingredients) {
         this.bun = bun;
         this.burgers = burgers;
         this.sauce = sauce;
