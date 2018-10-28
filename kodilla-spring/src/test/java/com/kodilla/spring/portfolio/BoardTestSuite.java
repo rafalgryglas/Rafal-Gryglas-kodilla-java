@@ -22,13 +22,8 @@ public class BoardTestSuite {
         String toDo = board.getToDoList().getTasks().get(0);
 
         //Then
-        Assert.assertEquals(doneList, "Done List"); //zmienic  oczekiwana
-        Assert.assertEquals(inProgress, "In Progress List");
-        Assert.assertEquals(toDo, "To Do List");
-
-//        System.out.println("===== Beans list: ==== >>");
-//        Arrays.stream(context.getBeanDefinitionNames())
-//                .forEach(System.out::println);
-//        System.out.println("<< ===== Beans list ====");
+        Assert.assertEquals("Done List", doneList);
+        Assert.assertEquals("In Progress List", inProgress);
+        Assert.assertEquals("To Do List", toDo);
     }
 }

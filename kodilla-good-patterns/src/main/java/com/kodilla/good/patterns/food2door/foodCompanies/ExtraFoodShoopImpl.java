@@ -4,10 +4,10 @@ import com.kodilla.good.patterns.food2door.shopAndOrder.Order;
 import com.kodilla.good.patterns.food2door.shopAndOrder.Shop;
 import com.kodilla.good.patterns.food2door.shopAndOrder.ShopService;
 
-public class ExtraFoodShoop implements ShopService {
+public class ExtraFoodShoopImpl implements ShopService {
     private Shop shop;
 
-    public ExtraFoodShoop (Shop shop) {
+    public ExtraFoodShoopImpl(Shop shop) {
         this.shop = shop;
     }
 

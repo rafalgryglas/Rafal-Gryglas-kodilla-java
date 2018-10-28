@@ -4,28 +4,26 @@ import com.kodilla.good.patterns.food2door.shopAndOrder.Order;
 import com.kodilla.good.patterns.food2door.shopAndOrder.Shop;
 import com.kodilla.good.patterns.food2door.shopAndOrder.ShopService;
 
-public class GlutenFreeShop implements ShopService {
+public class GlutenFreeShopImpl implements ShopService {
 
     private Shop shop;
 
-    public GlutenFreeShop (Shop shop) {
+    public GlutenFreeShopImpl(Shop shop) {
         this.shop = shop;
     }
 
     @Override
     public boolean process() {
-        System.out.println("Realization order in shop: "+shop.getShopName());
+        System.out.println("Realization order in shop: " + shop.getShopName());
         return true;
     }
 
     @Override
     public boolean productAvailable(Order order) {
-        if (order.productQuantity>0) {
-            System.out.println("Product ["+ order.getProduct().getProductName() +"} available in shop: "+ shop.getShopName() );
+        if (order.productQuantity > 0) {
+            System.out.println("Product [" + order.getProduct().getProductName() + "] available in shop: " + shop.getShopName());
             return true;
-        }else{
-            System.out.println("Product unavailable in shop: "+shop.getShopName());
-            return false;
         }
+        return false;
     }
 }
