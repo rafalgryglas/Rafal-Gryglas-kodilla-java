@@ -5,8 +5,15 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
+@NamedNativeQuery(
+        name = "Company.retriveByThreeFirstLettersCompany",
+        query = "SELECT * FROM COMPANIES" +
+                " WHERE LEFT (COMPANY_NAME, 3) = :THREEFIRSTLETTERS",
+        resultClass = Company.class
+)
+
 @Entity
-@Table (name = "COMPANIES")
+@Table(name = "COMPANIES")
 public class Company {
     private int id;
     private String name;
@@ -15,21 +22,25 @@ public class Company {
     public Company(String name) {
         this.name = name;
     }
+
     public Company() {
     }
+
     @Id
     @NotNull
     @GeneratedValue
-    @Column(name="COMPANY_ID", unique = true)
+    @Column(name = "COMPANY_ID", unique = true)
     public int getId() {
         return id;
     }
+
     @NotNull
-    @Column(name="COMPANY_NAME")
+    @Column(name = "COMPANY_NAME")
     public String getName() {
         return name;
     }
-    @ManyToMany (cascade = CascadeType.ALL, mappedBy = "companies")
+
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     public List<Employee> getEmployees() {
         return employees;
     }

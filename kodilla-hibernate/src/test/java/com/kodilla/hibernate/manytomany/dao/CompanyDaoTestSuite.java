@@ -9,14 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
+@Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
-    public void testSaveManyToMany(){
+    public void testSaveManyToMany() {
         //Given
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
@@ -45,16 +51,83 @@ public class CompanyDaoTestSuite {
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
         //Then
-        Assert.assertNotEquals(0,softwareMachineId);
-        Assert.assertNotEquals(0,dataMaestersId);
-        Assert.assertNotEquals(0,greyMatterId);
+        Assert.assertNotEquals(0, softwareMachineId);
+        Assert.assertNotEquals(0, dataMaestersId);
+        Assert.assertNotEquals(0, greyMatterId);
         //CleanUp
-        try {
-            companyDao.delete(softwareMachineId);
-            companyDao.delete(dataMaestersId);
-            companyDao.delete(greyMatterId);
-        } catch (Exception e) {
-            //do nothing
-        }
+//        try {
+//            companyDao.delete(softwareMachineId);
+//            companyDao.delete(dataMaestersId);
+//            companyDao.delete(greyMatterId);
+//        } catch (Exception e) {
+//            //do nothing
+//        }
+    }
+
+    @Test
+    public void testNamedQueryEmployeeLastName() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        dataMaesters.getEmployees().add(stephanieClarckson);
+        dataMaesters.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarckson.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(greyMatter);
+
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+        //When
+        List<Employee> searchByLastName = employeeDao.retrieveEmployeeWithGivenLastName("Smith");
+        //Then
+        Assert.assertNotEquals(0, searchByLastName.size());
+        Assert.assertEquals("Smith", searchByLastName.get(0).getLastname());
+    }
+
+    @Test
+    public void testNamedQueryFindByThreeCharCompaniesName() {
+        //Given
+        Employee johnSmith = new Employee("John", "Smith");
+        Employee stephanieClarckson = new Employee("Stephanie", "Clarckson");
+        Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
+
+        Company softwareMachine = new Company("Software Machine");
+        Company dataMaesters = new Company("Data Maesters");
+        Company greyMatter = new Company("Grey Matter");
+
+        softwareMachine.getEmployees().add(johnSmith);
+        dataMaesters.getEmployees().add(stephanieClarckson);
+        dataMaesters.getEmployees().add(lindaKovalsky);
+        greyMatter.getEmployees().add(johnSmith);
+        greyMatter.getEmployees().add(lindaKovalsky);
+
+        johnSmith.getCompanies().add(softwareMachine);
+        johnSmith.getCompanies().add(greyMatter);
+        stephanieClarckson.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(dataMaesters);
+        lindaKovalsky.getCompanies().add(greyMatter);
+
+        companyDao.save(softwareMachine);
+        companyDao.save(dataMaesters);
+        companyDao.save(greyMatter);
+
+        //When
+        List<Company> searchCompanyByFirstThreeLetters = companyDao.retriveByThreeFirstLettersCompany("Sof");
+        //Then
+        Assert.assertNotEquals(0, searchCompanyByFirstThreeLetters.size());
+        Assert.assertEquals("Software Machine", searchCompanyByFirstThreeLetters.get(0).getName());
     }
 }
