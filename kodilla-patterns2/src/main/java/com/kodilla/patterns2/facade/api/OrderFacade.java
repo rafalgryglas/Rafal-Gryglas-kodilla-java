@@ -9,24 +9,24 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy
 @Service
 public class OrderFacade {
     @Autowired
     private ShopService shopService;
     private static final Logger LOGGER = LoggerFactory.getLogger(OrderFacade.class);
 
-    public void processOrder (final OrderDto order, final Long userId) throws OrderProcessingException {
+    public void processOrder (OrderDto orderDto, Long userId) throws OrderProcessingException {
         boolean wasError = false;
         long orderId = shopService.openOrder(userId);
         LOGGER.info("Registering new order, ID: " + orderId);
         if (orderId < 0) {
             LOGGER.error(OrderProcessingException.ERR_NOT_AUTHORISED);
             wasError = true;
-            throw new OrderProcessingException((OrderProcessingException.ERR_NOT_AUTHORISED));
+            throw new OrderProcessingException(OrderProcessingException.ERR_NOT_AUTHORISED);
         }
         try {
-            for (ItemDto orderItem : order.getItems()) {
+            for (ItemDto orderItem : orderDto.getItems()) {
                 LOGGER.info("Adding item " + orderItem.getProductId() + ", " + orderItem.getQuantity() + " pcs");
                 shopService.addItem(orderId,orderItem.getProductId(),orderItem.getQuantity());
             }
