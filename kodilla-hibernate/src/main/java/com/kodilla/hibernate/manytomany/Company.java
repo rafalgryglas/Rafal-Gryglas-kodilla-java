@@ -7,9 +7,13 @@ import java.util.List;
 
 @NamedNativeQuery(
         name = "Company.retriveByThreeFirstLettersCompany",
-        query = "SELECT * FROM COMPANIES" +
+        query = "SELECT * FROM Company" +
                 " WHERE LEFT (COMPANY_NAME, 3) = :THREEFIRSTLETTERS",
         resultClass = Company.class
+)
+@NamedQuery(
+        name = "Company.findCompanyByNameFragment",
+        query = "FROM Company WHERE COMPANY_NAME LIKE :ARG"
 )
 
 @Entity
