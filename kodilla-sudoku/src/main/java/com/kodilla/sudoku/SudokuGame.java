@@ -8,8 +8,8 @@ public class SudokuGame {
 
     public static boolean resolveSudoku(SudokuBoard sudokuBoard) {
         boolean changed = true;
-        int count =+0;
-        while  (changed) {
+        int count = 1;
+        while (changed) {
             System.out.println("Number of algorithm loop: " + count);
             changed = false;
             for (int row = 0; row < 9; row++) {
